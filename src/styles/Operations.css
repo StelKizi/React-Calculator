@@ -1,0 +1,47 @@
+.operationContainer {
+	display: grid;
+	grid-template-columns: 100px 100px 50px;
+	grid-template-areas:
+		'clearEntry clear backspace'
+		'percentage reciprocal division'
+		'. . multicplication'
+		'. . subtraction'
+		'. . addition'
+		'. . equals';
+}
+
+.clearEntry {
+	grid-area: clearEntry;
+}
+.clear {
+	grid-area: clear;
+}
+.backspace {
+	grid-area: backspace;
+}
+.percentage {
+	grid-area: percentage;
+}
+.reciprocal {
+	grid-area: reciprocal;
+}
+
+.division {
+	grid-area: division;
+}
+
+.multiplication {
+	grid-area: multiplication;
+}
+
+.subtraction {
+	grid-area: subtraction;
+}
+
+.addition {
+	grid-area: addition;
+}
+
+.equals {
+	grid-area: equals;
+}
