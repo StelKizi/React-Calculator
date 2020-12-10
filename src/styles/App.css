@@ -1,0 +1,21 @@
+.App {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 98vh;
+	background: #e4e1e1;
+	padding: 3px;
+}
+
+.display {
+	font-size: 60px;
+	margin-bottom: 20px;
+	font-weight: 300;
+	text-align: right;
+}
+
+@media screen and (min-width: 1280px) {
+	.App {
+		width: 563px;
+		height: 700px;
+		margin: auto;
+	}
+}
