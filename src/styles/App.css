@@ -1,11 +1,12 @@
 .App {
 	font-family: Arial, Helvetica, sans-serif;
-	height: 98vh;
+	width: 100vw;
+	height: 100vh;
 	background: #e4e1e1;
-	padding: 3px;
 }
 
 .display {
+	padding: 30px 0 20px;
 	font-size: 60px;
 	margin-bottom: 20px;
 	font-weight: 300;
@@ -14,8 +15,8 @@
 
 @media screen and (min-width: 1280px) {
 	.App {
-		width: 563px;
-		height: 700px;
+		width: 500px;
+		height: 600px;
 		margin: auto;
 	}
 }

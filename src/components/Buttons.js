@@ -6,11 +6,9 @@ import '../styles/Buttons.css';
 export default function Buttons() {
 	return (
 		<div className="buttons">
-			<Button content="CE" />
 			<Button content="C" />
 			<Button content="⌫" />
 			<Button content="%" />
-			<Button content="1/x" />
 			<Button content="÷" />
 			<Button content="7" />
 			<Button content="8" />
