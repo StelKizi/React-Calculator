@@ -7,6 +7,20 @@ function App() {
 	const [previousValue, setPreviousValue] = useState(null);
 	const [operator, setOperator] = useState(null);
 
+	const handleOperation = (operator) => {
+		if (operator === '+') {
+			setPreviousValue(previousValue + parseFloat(input));
+		} else if (operator === '−') {
+			setPreviousValue(previousValue - parseFloat(input));
+		} else if (operator === '×') {
+			setPreviousValue(previousValue * parseFloat(input));
+		} else if (operator === '÷') {
+			setPreviousValue(previousValue / parseFloat(input));
+		} else {
+			setPreviousValue(parseFloat(input));
+		}
+	};
+
 	const handleClick = (content /* , type2 */) => {
 		const number = parseFloat(input);
 
@@ -25,71 +39,39 @@ function App() {
 				setOperator(null);
 				return;
 			case '+':
-				setPreviousValue(parseFloat(input));
+				if (operator) {
+					handleOperation(operator);
+				}
+				setInput('0');
 				setOperator('+');
 				return;
 			case '−':
-				setPreviousValue(parseFloat(input));
+				if (operator) {
+					handleOperation(operator);
+				}
+				setInput('0');
 				setOperator('−');
 				return;
 			case '×':
-				setPreviousValue(parseFloat(input));
+				if (operator) {
+					handleOperation(operator);
+				}
+				setInput('0');
 				setOperator('×');
 				return;
 			case '÷':
-				setPreviousValue(parseFloat(input));
+				if (operator) {
+					handleOperation(operator);
+				}
+				setInput('0');
 				setOperator('÷');
 				return;
 			default:
 				break;
 		}
-		/* 
-		if (content === 'C') {
-			setInput('0');
-			setPreviousValue(null);
-			setOperator(null);
-			return;
-		}
-
-		if (content === '+/−') {
-			setInput((number * -1).toString());
-			return;
-		}
-
-		if (content === '%') {
-			setInput((number / 100).toString());
-			setPreviousValue(null);
-			setOperator(null);
-			return;
-		}
-
-		if (content === '+') {
-			setPreviousValue(parseFloat(input));
-			setOperator('+');
-			return;
-		}
-
-		if (content === '−') {
-			setPreviousValue(parseFloat(input));
-			setOperator('−');
-			return;
-		}
-
-		if (content === '×') {
-			setPreviousValue(parseFloat(input));
-			setOperator('×');
-			return;
-		}
-
-		if (content === '÷') {
-			setPreviousValue(parseFloat(input));
-			setOperator('÷');
-			return;
-		} */
 
 		if (content === '=') {
 			if (!operator) return;
-
 			if (operator === '+') {
 				setInput((previousValue + parseFloat(input)).toString());
 			} else if (operator === '−') {
@@ -99,10 +81,9 @@ function App() {
 			} else if (operator === '÷') {
 				setInput((previousValue / parseFloat(input)).toString());
 			}
-
 			setPreviousValue(null);
 			setOperator(null);
-			return input;
+			return;
 		}
 
 		setInput(parseFloat(number + content).toString());
