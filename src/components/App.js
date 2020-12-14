@@ -10,56 +10,99 @@ function App() {
 	const handleClick = (content /* , type2 */) => {
 		const number = parseFloat(input);
 
-		setInput('0');
+		switch (content) {
+			case 'C':
+				setInput('0');
+				setPreviousValue(null);
+				setOperator(null);
+				return;
+			case '+/−':
+				setInput((number * -1).toString());
+				return;
+			case '%':
+				setInput((number / 100).toString());
+				setPreviousValue(null);
+				setOperator(null);
+				return;
+			case '+':
+				setPreviousValue(parseFloat(input));
+				setOperator('+');
+				return;
+			case '−':
+				setPreviousValue(parseFloat(input));
+				setOperator('−');
+				return;
+			case '×':
+				setPreviousValue(parseFloat(input));
+				setOperator('×');
+				return;
+			case '÷':
+				setPreviousValue(parseFloat(input));
+				setOperator('÷');
+				return;
+			default:
+				break;
+		}
+		/* 
 		if (content === 'C') {
+			setInput('0');
 			setPreviousValue(null);
+			setOperator(null);
 			return;
 		}
 
 		if (content === '+/−') {
-			setInput(number * -1).toString();
+			setInput((number * -1).toString());
 			return;
 		}
 
 		if (content === '%') {
 			setInput((number / 100).toString());
-			/* setPreviousValue(null); */
+			setPreviousValue(null);
 			setOperator(null);
 			return;
 		}
 
 		if (content === '+') {
 			setPreviousValue(parseFloat(input));
-			setInput('0');
 			setOperator('+');
 			return;
 		}
 
 		if (content === '−') {
 			setPreviousValue(parseFloat(input));
-			setInput('0');
 			setOperator('−');
 			return;
 		}
 
 		if (content === '×') {
 			setPreviousValue(parseFloat(input));
-			setInput('0');
 			setOperator('×');
 			return;
 		}
 
 		if (content === '÷') {
 			setPreviousValue(parseFloat(input));
-			setInput('0');
 			setOperator('÷');
 			return;
-		}
+		} */
 
 		if (content === '=') {
+			if (!operator) return;
+
+			if (operator === '+') {
+				setInput((previousValue + parseFloat(input)).toString());
+			} else if (operator === '−') {
+				setInput((previousValue - parseFloat(input)).toString());
+			} else if (operator === '×') {
+				setInput((previousValue * parseFloat(input)).toString());
+			} else if (operator === '÷') {
+				setInput((previousValue / parseFloat(input)).toString());
+			}
+
 			setPreviousValue(null);
 			setOperator(null);
-			return;
+			return input;
 		}
 
 		setInput(parseFloat(number + content).toString());
