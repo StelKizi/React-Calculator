@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import Button from './Button';
+/* import {evaluate} from 'mathjs'; */
+import ButtonContainer from './ButtonContainer';
 import '../styles/App.css';
 
 function App() {
 	const [input, setInput] = useState('0');
 	const [previousValue, setPreviousValue] = useState(null);
 	const [operator, setOperator] = useState(null);
+	const [countDecimal, setCountDecimal] = useState(0);
 
-	const handleOperation = (operator) => {
+	const handleOperation = () => {
 		if (operator === '+') {
 			setPreviousValue(previousValue + parseFloat(input));
 		} else if (operator === '−') {
@@ -21,7 +23,7 @@ function App() {
 		}
 	};
 
-	const handleClick = (content /* , type2 */) => {
+	const handleClick = (content) => {
 		const number = parseFloat(input);
 
 		switch (content) {
@@ -33,36 +35,40 @@ function App() {
 			case '+/−':
 				setInput((number * -1).toString());
 				return;
+			case '.':
+				if (input.includes('.')) {
+					setCountDecimal((count) => count + 1);
+				}
+
+				if (countDecimal < 1) {
+					setInput((result) => result + '.');
+				} else {
+					countDecimal(0);
+				}
+
+				return;
 			case '%':
 				setInput((number / 100).toString());
 				setPreviousValue(null);
 				setOperator(null);
 				return;
 			case '+':
-				if (operator) {
-					handleOperation(operator);
-				}
+				handleOperation();
 				setInput('0');
 				setOperator('+');
 				return;
 			case '−':
-				if (operator) {
-					handleOperation(operator);
-				}
+				handleOperation();
 				setInput('0');
 				setOperator('−');
 				return;
 			case '×':
-				if (operator) {
-					handleOperation(operator);
-				}
+				handleOperation();
 				setInput('0');
 				setOperator('×');
 				return;
 			case '÷':
-				if (operator) {
-					handleOperation(operator);
-				}
+				handleOperation();
 				setInput('0');
 				setOperator('÷');
 				return;
@@ -93,61 +99,7 @@ function App() {
 		<div className="App">
 			<div className="display">{input}</div>
 
-			<div className="buttons">
-				<Button
-					handleClick={handleClick}
-					content="C"
-					type="functionOrOperator"
-				/>
-				<Button
-					handleClick={handleClick}
-					content="⌫"
-					type="functionOrOperator"
-				/>
-				<Button
-					handleClick={handleClick}
-					content="%"
-					type="functionOrOperator"
-					/* type2="operator" */
-				/>
-				<Button
-					handleClick={handleClick}
-					content="÷"
-					type="functionOrOperator"
-					/* type2="operator" */
-				/>
-				<Button handleClick={handleClick} content="7" />
-				<Button handleClick={handleClick} content="8" />
-				<Button handleClick={handleClick} content="9" />
-				<Button
-					handleClick={handleClick}
-					content="×"
-					type="functionOrOperator"
-					/* type2="operator" */
-				/>
-				<Button handleClick={handleClick} content="4" />
-				<Button handleClick={handleClick} content="5" />
-				<Button handleClick={handleClick} content="6" />
-				<Button
-					handleClick={handleClick}
-					content="−"
-					type="functionOrOperator"
-					/* type2="operator" */
-				/>
-				<Button handleClick={handleClick} content="1" />
-				<Button handleClick={handleClick} content="2" />
-				<Button handleClick={handleClick} content="3" />
-				<Button
-					handleClick={handleClick}
-					content="+"
-					type="functionOrOperator"
-					/* type2="operator" */
-				/>
-				<Button handleClick={handleClick} content="+/−" />
-				<Button handleClick={handleClick} content="0" />
-				<Button handleClick={handleClick} content="." />
-				<Button handleClick={handleClick} content="=" />
-			</div>
+			<ButtonContainer handleClick={handleClick} />
 		</div>
 	);
 }
