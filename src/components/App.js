@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 /* import {evaluate} from 'mathjs'; */
 import ButtonContainer from './ButtonContainer';
 import '../styles/App.css';
+import handleAddComma from '../utils';
 
 function App() {
 	const [input, setInput] = useState('0');
@@ -22,6 +23,8 @@ function App() {
 		}
 	};
 
+	/* const handle */
+
 	const handleClick = (content) => {
 		const number = parseFloat(input);
 
@@ -41,7 +44,7 @@ function App() {
 				return;
 
 			case '.':
-				/* if (input.includes('.')) return; */
+				if (input.includes('.')) return;
 
 				setInput(input + '.');
 				return;
@@ -55,6 +58,8 @@ function App() {
 				handleOperation();
 				setInput('0');
 				setOperator('+');
+				console.log(operator);
+				setInput(input + '+');
 				return;
 
 			case '−':
@@ -99,13 +104,13 @@ function App() {
 		if (input[input.length - 1] === '.') {
 			setInput(input + content);
 		} else {
-			setInput(parseFloat(number + content).toString());
+			setInput(parseFloat(input + content).toString());
 		}
 	};
 
 	return (
 		<div className="App">
-			<div className="display">{input}</div>
+			<div className="display">{handleAddComma(input)}</div>
 
 			<ButtonContainer handleClick={handleClick} />
 		</div>

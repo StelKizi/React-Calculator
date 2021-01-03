@@ -3,3 +3,8 @@ export const checkPrevAction = (expression) => {
 
 	return actions.test(expression);
 };
+
+const handleAddComma = (input) => {
+	return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+export default handleAddComma;
