@@ -1,4 +1,4 @@
-# To run the app, clone to your local machine, navigate to the project directory and run `yarn start` or `npm start`
+## To run the app, clone to your local machine, navigate to the project directory and run `yarn start` or `npm start`
 
 ## Available Scripts
 
