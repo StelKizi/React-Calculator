@@ -7,7 +7,7 @@ function App() {
 	const [input, setInput] = useState('0');
 	const [previousValue, setPreviousValue] = useState(null);
 	const [operator, setOperator] = useState(null);
-	const [countDecimal, setCountDecimal] = useState(0);
+	/* const [countDecimal, setCountDecimal] = useState(0); */
 
 	const handleOperation = () => {
 		if (operator === '+') {
@@ -29,24 +29,21 @@ function App() {
 		switch (content) {
 			case 'C':
 				setInput('0');
+				/* setCountDecimal(0); */
 				setPreviousValue(null);
 				setOperator(null);
 				return;
+
 			case '+/−':
 				setInput((number * -1).toString());
 				return;
+
 			case '.':
-				if (input.includes('.')) {
-					setCountDecimal((count) => count + 1);
-				}
+				/* if (input.includes('.')) return; */
 
-				if (countDecimal < 1) {
-					setInput((result) => result + '.');
-				} else {
-					countDecimal(0);
-				}
-
+				setInput(input + '.');
 				return;
+
 			case '%':
 				setInput((number / 100).toString());
 				setPreviousValue(null);
@@ -57,21 +54,25 @@ function App() {
 				setInput('0');
 				setOperator('+');
 				return;
+
 			case '−':
 				handleOperation();
 				setInput('0');
 				setOperator('−');
 				return;
+
 			case '×':
 				handleOperation();
 				setInput('0');
 				setOperator('×');
 				return;
+
 			case '÷':
 				handleOperation();
 				setInput('0');
 				setOperator('÷');
 				return;
+
 			default:
 				break;
 		}
@@ -92,7 +93,12 @@ function App() {
 			return;
 		}
 
-		setInput(parseFloat(number + content).toString());
+		/* Check if there is a decimal point and add the next number */
+		if (input[input.length - 1] === '.') {
+			setInput(input + content);
+		} else {
+			setInput(parseFloat(number + content).toString());
+		}
 	};
 
 	return (
