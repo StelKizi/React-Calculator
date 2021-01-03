@@ -59,7 +59,6 @@ function App() {
 				setInput('0');
 				setOperator('+');
 				console.log(operator);
-				setInput(input + '+');
 				return;
 
 			case '−':
