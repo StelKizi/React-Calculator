@@ -7,7 +7,6 @@ function App() {
 	const [input, setInput] = useState('0');
 	const [previousValue, setPreviousValue] = useState(null);
 	const [operator, setOperator] = useState(null);
-	/* const [countDecimal, setCountDecimal] = useState(0); */
 
 	const handleOperation = () => {
 		if (operator === '+') {
@@ -29,9 +28,12 @@ function App() {
 		switch (content) {
 			case 'C':
 				setInput('0');
-				/* setCountDecimal(0); */
 				setPreviousValue(null);
 				setOperator(null);
+				return;
+
+			case '⌫':
+				setInput(input.substr(0, input.length - 1));
 				return;
 
 			case '+/−':
